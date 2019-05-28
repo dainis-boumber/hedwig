@@ -10,6 +10,7 @@ class TrainerFactory(object):
         'Reuters': ClassificationTrainer,
         'AAPD': ClassificationTrainer,
         'IMDB': ClassificationTrainer,
+        'MBTI':ClassificationTrainer,
         'Yelp2014': ClassificationTrainer,
         'Robust04': RelevanceTransferTrainer,
         'Robust05': RelevanceTransferTrainer,
