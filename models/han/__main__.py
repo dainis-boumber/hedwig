@@ -12,6 +12,7 @@ from common.train import TrainerFactory
 from datasets.aapd import AAPDHierarchical as AAPD
 from datasets.imdb import IMDBHierarchical as IMDB
 from datasets.reuters import ReutersHierarchical as Reuters
+from datasets.mbti import MBTIHierarchical as MBTI
 from datasets.yelp2014 import Yelp2014Hierarchical as Yelp2014
 from models.han.args import get_args
 from models.han.model import HAN
@@ -124,7 +125,7 @@ if __name__ == '__main__':
 
     parameter = filter(lambda p: p.requires_grad, model.parameters())
     optimizer = torch.optim.Adam(parameter, lr=args.lr, weight_decay=args.weight_decay)
-    
+
     train_evaluator = EvaluatorFactory.get_evaluator(dataset_class, model, None, train_iter, args.batch_size, args.gpu)
     test_evaluator = EvaluatorFactory.get_evaluator(dataset_class, model, None, test_iter, args.batch_size, args.gpu)
     dev_evaluator = EvaluatorFactory.get_evaluator(dataset_class, model, None, dev_iter, args.batch_size, args.gpu)

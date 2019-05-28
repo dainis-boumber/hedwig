@@ -12,6 +12,7 @@ from datasets.aapd import AAPDCharQuantized as AAPD
 from datasets.imdb import IMDBCharQuantized as IMDB
 from datasets.reuters import ReutersCharQuantized as Reuters
 from datasets.yelp2014 import Yelp2014CharQuantized as Yelp2014
+from datasets.mbti import MBTICharQuantized as MBTI
 from models.char_cnn.args import get_args
 from models.char_cnn.model import CharCNN
 
