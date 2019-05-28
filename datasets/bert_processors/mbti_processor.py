@@ -3,22 +3,22 @@ import os
 from datasets.bert_processors.abstract_processor import BertProcessor, InputExample
 
 
-class ReutersProcessor(BertProcessor):
-    NAME = 'Reuters'
+class MBTIProcessor(BertProcessor):
+    NAME = 'MBTI'
     NUM_CLASSES = 4
     IS_MULTILABEL = True
 
     def get_train_examples(self, data_dir):
         return self._create_examples(
-            self._read_tsv(os.path.join(data_dir, 'MBTI', 'train.tsv')), 'train')
+            self._read_tsv(os.path.join(data_dir, 'MBTI', 'train.csv')), 'train')
 
     def get_dev_examples(self, data_dir):
         return self._create_examples(
-            self._read_tsv(os.path.join(data_dir, 'MBTI', 'dev.tsv')), 'dev')
+            self._read_tsv(os.path.join(data_dir, 'MBTI', 'dev.csv')), 'dev')
 
     def get_test_examples(self, data_dir):
         return self._create_examples(
-            self._read_tsv(os.path.join(data_dir, 'MBTI', 'test.tsv')), 'test')
+            self._read_tsv(os.path.join(data_dir, 'MBTI', 'test.csv')), 'test')
 
     def _create_examples(self, lines, set_type):
         examples = []
