@@ -66,7 +66,7 @@ if __name__ == '__main__':
         'AGNews': AGNewsProcessor,
         'Yelp2014': Yelp2014Processor,
         'Sogou': SogouProcessor,
-        'MBTI': MBTI,
+        'MBTI': MBTIProcessor,
     }
 
     if args.gradient_accumulation_steps < 1:
