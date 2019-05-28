@@ -82,7 +82,7 @@ if __name__ == '__main__':
         'AAPD': AAPD,
         'IMDB': IMDB,
         'Yelp2014': Yelp2014,
-        'MBTI', MBTI,
+        'MBTI': MBTI,
     }
 
     if args.dataset not in dataset_map:
