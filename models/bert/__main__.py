@@ -64,7 +64,8 @@ if __name__ == '__main__':
         'AAPD': AAPDProcessor,
         'AGNews': AGNewsProcessor,
         'Yelp2014': Yelp2014Processor,
-        'Sogou': SogouProcessor
+        'Sogou': SogouProcessor,
+        'MBTI': MBTI,
     }
 
     if args.gradient_accumulation_steps < 1:
@@ -141,7 +142,7 @@ if __name__ == '__main__':
         optimizer = BertAdam(optimizer_grouped_parameters,
                              lr=args.lr,
                              warmup=args.warmup_proportion,
-                             t_total=num_train_optimization_steps)    
+                             t_total=num_train_optimization_steps)
 
     trainer = BertTrainer(model, optimizer, processor, args)
 
@@ -160,4 +161,3 @@ if __name__ == '__main__':
 
     evaluate_split(model, processor, args, split='dev')
     evaluate_split(model, processor, args, split='test')
-

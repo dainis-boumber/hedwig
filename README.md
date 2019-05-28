@@ -1,3 +1,7 @@
+This repo is a fork of Hedwig, a library containing PyTorch deep learning models for document classification.
+The original was implemented by the Data Systems Group at the University of Waterloo [git source](https://github.com/castorini/hedwig.git)
+This fork adds a few models and datasets. Corresponding authors: Dainis Boumber, dainis.boumber@gmail.com
+
 <p align="center">
 <img src="https://github.com/karkaroff/hedwig/blob/bellatrix/docs/hedwig.png" width="360">
 </p>
@@ -38,7 +42,7 @@ Other Python packages we use can be installed via pip:
 $ pip install -r requirements.txt
 ```
 
-Code depends on data from NLTK (e.g., stopwords) so you'll have to download them. 
+Code depends on data from NLTK (e.g., stopwords) so you'll have to download them.
 Run the Python interpreter and type the commands:
 
 ```python
@@ -48,7 +52,7 @@ Run the Python interpreter and type the commands:
 
 ## Datasets
 
-Download the Reuters, AAPD and IMDB datasets, along with word2vec embeddings from 
+Download the Reuters, AAPD and IMDB datasets, along with word2vec embeddings from
 [`hedwig-data`](https://git.uwaterloo.ca/jimmylin/hedwig-data).
 
 ```bash
@@ -67,9 +71,9 @@ Organize your directory structure as follows:
 After cloning the hedwig-data repo, you need to unzip the embeddings and run the preprocessing script:
 
 ```bash
-cd hedwig-data/embeddings/word2vec 
-gzip -d GoogleNews-vectors-negative300.bin.gz 
-python bin2txt.py GoogleNews-vectors-negative300.bin GoogleNews-vectors-negative300.txt 
+cd hedwig-data/embeddings/word2vec
+gzip -d GoogleNews-vectors-negative300.bin.gz
+python bin2txt.py GoogleNews-vectors-negative300.bin GoogleNews-vectors-negative300.txt
 ```
 
 **If you are an internal Hedwig contributor using the machines in the lab, follow the instructions [here](docs/internal-instructions.md).**
