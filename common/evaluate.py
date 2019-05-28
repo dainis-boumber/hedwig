@@ -14,7 +14,7 @@ class EvaluatorFactory(object):
         'Robust04': RelevanceTransferEvaluator,
         'Robust05': RelevanceTransferEvaluator,
         'Robust45': RelevanceTransferEvaluator,
-        'MBTI': MBTI,
+        'MBTI': ClassificationEvaluator,
     }
 
     @staticmethod
