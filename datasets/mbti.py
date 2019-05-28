@@ -53,12 +53,12 @@ class MBTI(TabularDataset):
         return len(ex.text)
 
     @classmethod
-    def splits(cls, path, train=os.path.join('MBTI', 'train.csv'),
-               validation=os.path.join('MBTI', 'dev.csv'),
-               test=os.path.join('MBTI', 'test.csv'), **kwargs):
+    def splits(cls, path, train=os.path.join('MBTI', 'train.tsv'),
+               validation=os.path.join('MBTI', 'dev.tsv'),
+               test=os.path.join('MBTI', 'test.tsv'), **kwargs):
         return super(MBTI, cls).splits(
             path, train=train, validation=validation, test=test,
-            format='csv', fields=[('label', cls.LABEL_FIELD), ('text', cls.TEXT_FIELD)]
+            format='tsv', fields=[('label', cls.LABEL_FIELD), ('text', cls.TEXT_FIELD)]
         )
 
     @classmethod
