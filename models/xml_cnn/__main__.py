@@ -13,8 +13,10 @@ from datasets.aapd import AAPD
 from datasets.imdb import IMDB
 from datasets.reuters import Reuters
 from datasets.yelp2014 import Yelp2014
+from datasets.mbti import MBTI
 from models.xml_cnn.args import get_args
 from models.xml_cnn.model import XmlCNN
+
 
 
 class UnknownWordVecCache(object):
@@ -79,7 +81,8 @@ if __name__ == '__main__':
         'Reuters': Reuters,
         'AAPD': AAPD,
         'IMDB': IMDB,
-        'Yelp2014': Yelp2014
+        'Yelp2014': Yelp2014,
+        'MBTI', MBTI,
     }
 
     if args.dataset not in dataset_map:
