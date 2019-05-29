@@ -1,6 +1,17 @@
+## HedwigANLP
+
 This repo is a fork of Hedwig, a library containing PyTorch deep learning models for document classification.
 The original was implemented by the Data Systems Group at the University of Waterloo [git source](https://github.com/castorini/hedwig.git)
-This fork adds a few models and datasets. Corresponding authors: Dainis Boumber, dainis.boumber@gmail.com
+This fork adds a few models and datasets. It was developed as part of research with Arjun Mukherjee's group.
+Corresponding authors: Dainis Boumber, dainis.boumber@gmail.com
+
+## Additions in this fork:
+
++ MBTI Dataset and all the necessary modules
++ utility to preprocess and add new datasets saved from regular Pandas dataframe
++ support for PyTorch 1.0 and 1.1
+
+**IMPORTANT: if you add manually, remember that torchtext breaks if your data has newlines in it inside the text fields, so take care to clean them out.**
 
 <p align="center">
 <img src="https://github.com/karkaroff/hedwig/blob/bellatrix/docs/hedwig.png" width="360">
@@ -21,7 +32,7 @@ Each model directory has a `README.md` with further details.
 
 ## Setting up PyTorch
 
-Hedwig is designed for Python 3.6 and [PyTorch](https://pytorch.org/) 0.4.
+Hedwig was designed for Python 3.6 and [PyTorch](https://pytorch.org/) 0.4. PyTorch 1.0 and 1.1 is supported. Python 3.7 is being tested.
 PyTorch recommends [Anaconda](https://www.anaconda.com/distribution/) for managing your environment.
 We'd recommend creating a custom environment as follows:
 
@@ -75,5 +86,3 @@ cd hedwig-data/embeddings/word2vec
 gzip -d GoogleNews-vectors-negative300.bin.gz
 python bin2txt.py GoogleNews-vectors-negative300.bin GoogleNews-vectors-negative300.txt
 ```
-
-**If you are an internal Hedwig contributor using the machines in the lab, follow the instructions [here](docs/internal-instructions.md).**
