@@ -8,15 +8,29 @@ class NewDatasetProcessor:
 
     def __init__(self):
         pass
+    
+    def preprocess(text):
+        # remove URL's from train and test
+        text=ftfy.fix_text(text)
+        text=textacy.preprocess.preprocess_text(text,
+                                                no_urls=True,
+                                                no_emails=True,
+                                                no_phone_numbers=True,
+                                                no_accents=True,
+                                                )
+        return ' '.join(text.split()).strip()
 
-    def prepare_dataset(dataset):
-    """TODO: Make this into a standard first step of adding a new dataset"""
-        pass
-        
-    def prepare_csv(path:Optional[str], csv_file:str, sep:str, header='infer', text_cols:List[str], label_cols:List[str], low_memory=False):
-    """TODO: optimize for speed and memory use
-        Process a csv (usually a Pandas-generated one) in such a way that torchtext can handle it
-    """
+    def prepare_csv(csv:str, sep:str=',', header='infer', text_cols:List=[, label_cols:List, low_memory=False):
+        ''' Converts csv to tsv that is readable by Hedwig
+            Params:
+                csv - relative or full filname, for example myfile.csv or ../data/files/myfile.csv or /datasets/xyz/myfile.csv
+                sep - what is used to separate fields, for example '\t' or ','. Default is ','
+                header - does the csv have a header file? default is 'infer', can be False
+                text_cols - which column(s) contain text
+                label_cols - which column(s) has the labels
+            TODO: optimize for speed and memory use
+        '''
+    
         if path is None:
             path = Path('.')
         else:
