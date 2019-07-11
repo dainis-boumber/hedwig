@@ -54,13 +54,12 @@ class ClassificationEvaluator(Evaluator):
         target_labels = np.array(target_labels)
         accuracy = metrics.accuracy_score(target_labels, predicted_labels)
         hamming_loss = metrics.hamming_loss(target_labels, predicted_labels)
-        jaccard_score = matrics.jaccard_similarity_score(target_labels, predicted_labels)
+        jaccard_score = metrics.jaccard_similarity_score(target_labels, predicted_labels)
         precision = metrics.precision_score(target_labels, predicted_labels, average='micro')
         recall = metrics.recall_score(target_labels, predicted_labels, average='micro')
         f1_micro = metrics.f1_score(target_labels, predicted_labels, average='micro')
         f1_macro = metrics.f1_score(target_labels, predicted_labels, average='macro')
         auc_micro=metrics.roc_auc_score(target_labels, predicted_labels, average='micro')
-        auc_macro=metrics.roc_auc_score(target_labels, predicted_labels, average='macro')
         avg_loss = total_loss / len(self.data_loader.dataset.examples)
 
         if hasattr(self.model, 'beta_ema') and self.model.beta_ema > 0:
@@ -70,11 +69,11 @@ class ClassificationEvaluator(Evaluator):
         return [accuracy,
                 hamming_loss,
                 jaccard_score,
-                precision, recall,
+                precision, 
+                recall,
                 f1_micro,
                 f1_macro,
                 auc_micro,
-                auc_macro,
                 avg_loss],['accuracy',
                            'hamming_loss',
                            'jaccard_score',
@@ -83,5 +82,4 @@ class ClassificationEvaluator(Evaluator):
                            'f1_micro',
                            'f1_macro',
                            'auc_micro',
-                           'auc_macro',
                            'cross_entropy_loss' ]

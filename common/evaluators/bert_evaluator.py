@@ -88,9 +88,30 @@ class BertEvaluator(object):
 
         predicted_labels, target_labels = np.array(predicted_labels), np.array(target_labels)
         accuracy = metrics.accuracy_score(target_labels, predicted_labels)
+        hamming_loss = metrics.hamming_loss(target_labels, predicted_labels)
+        jaccard_score = metrics.jaccard_similarity_score(target_labels, predicted_labels)
         precision = metrics.precision_score(target_labels, predicted_labels, average='micro')
         recall = metrics.recall_score(target_labels, predicted_labels, average='micro')
-        f1 = metrics.f1_score(target_labels, predicted_labels, average='micro')
+        f1_micro = metrics.f1_score(target_labels, predicted_labels, average='micro')
+        f1_macro = metrics.f1_score(target_labels, predicted_labels, average='macro')
+        auc_micro=metrics.roc_auc_score(target_labels, predicted_labels, average='micro')
+        avg_loss = total_loss / len(self.data_loader.dataset.examples)
         avg_loss = total_loss / nb_eval_steps
 
-        return [accuracy, precision, recall, f1, avg_loss], ['accuracy', 'precision', 'recall', 'f1', 'avg_loss']
+        return [accuracy,
+                hamming_loss,
+                jaccard_score,
+                precision, 
+                recall,
+                f1_micro,
+                f1_macro,
+                auc_micro,
+                avg_loss],['accuracy',
+                           'hamming_loss',
+                           'jaccard_score',
+                           'precision_micro',
+                           'recall_micro',
+                           'f1_micro',
+                           'f1_macro',
+                           'auc_micro',
+                           'cross_entropy_loss' ]
