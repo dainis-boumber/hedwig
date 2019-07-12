@@ -5,22 +5,25 @@ The original was implemented by the Data Systems Group at the University of Wate
 This fork adds a few models and datasets. It was developed as part of research with Arjun Mukherjee's group.
 Corresponding authors: Dainis Boumber, dainis.boumber@gmail.com
 
-## Additions in this fork:
+#### Additions in this fork:
 
 + MBTI Dataset and all the necessary modules
 + utility to preprocess and add new datasets saved from regular Pandas dataframe
-+ support for PyTorch 1.0 and 1.1
++ a few bug fixes
 
-**IMPORTANT: if you add manually, remember that torchtext breaks if your data has newlines in it inside the text fields, so take care to clean them out.**
+#### Coming Soon
 
-<p align="center">
-<img src="https://github.com/karkaroff/hedwig/blob/bellatrix/docs/hedwig.png" width="360">
-</p>
++ Support for PyTorch 1.0/1.1
++ Support for Python 3.7
++ Support for mixed precision training for all models
++ Distributed training for models that need it
++ Dedicated embeddings module
++ More automation to dataset addition process
++ Several SOTA and baselines classifiers
 
-This repo contains PyTorch deep learning models for document classification, implemented by the Data Systems Group at the University of Waterloo.
+#### Models
 
-## Models
-
++  HBERT: Hierarchical BERT for finetuning on Document Classification tasks.
 + [DocBERT](models/bert/) : DocBERT: BERT for Document Classification [(Adhikari et al., 2019)](https://arxiv.org/abs/1904.08398v1)
 + [Reg-LSTM](models/reg_lstm/): Regularized LSTM for document classification [(Adhikari et al., NAACL 2019)](https://cs.uwaterloo.ca/~jimmylin/publications/Adhikari_etal_NAACL2019.pdf)
 + [XML-CNN](models/xml_cnn/): CNNs for extreme multi-label text classification [(Liu et al., SIGIR 2017)](http://nyc.lti.cs.cmu.edu/yiming/Publications/jliu-sigir17.pdf)
@@ -30,9 +33,10 @@ This repo contains PyTorch deep learning models for document classification, imp
 
 Each model directory has a `README.md` with further details.
 
-## Setting up PyTorch
+#### Setting up PyTorch
 
-Hedwig was designed for Python 3.6 and [PyTorch](https://pytorch.org/) 0.4. PyTorch 1.0 and 1.1 is supported. Python 3.7 is being tested.
+Hedwig was designed for Python 3.6 and [PyTorch](https://pytorch.org/) 0.4. 
+
 PyTorch recommends [Anaconda](https://www.anaconda.com/distribution/) for managing your environment.
 We'd recommend creating a custom environment as follows:
 
@@ -61,7 +65,7 @@ Run the Python interpreter and type the commands:
 >>> nltk.download()
 ```
 
-## Datasets
+#### Datasets
 
 Download the Reuters, AAPD and IMDB datasets, along with word2vec embeddings from
 [`hedwig-data`](https://git.uwaterloo.ca/jimmylin/hedwig-data).
@@ -86,3 +90,16 @@ cd hedwig-data/embeddings/word2vec
 gzip -d GoogleNews-vectors-negative300.bin.gz
 python bin2txt.py GoogleNews-vectors-negative300.bin GoogleNews-vectors-negative300.txt
 ```
+
+#### Adding new datasets
+
+Add a directory named after dataset name in hedwig-data/datasets/
+Within it, you will have 3 files: train.tsv, test.tsv, and dev.tsv.
+Use add_dataset.ipynb notebook, found in the utils/ directory, to pre-process your Pandas dataframe into tsv file that can be used by Hedwig.
+Add the code necessary to load, process, train and evaluate on your new dataset. Small modifications may be necessary to roughly 25% of the library, but they are really simple to do. See how MBTI was added for an example, and copy-paste (while changing relevant things like number of labels, classes, etc.)
+Your preprocessing should take into account the word embeddings used (by default most things not BERT are taking in word2vec, which has very specific preprocessing rules).
+
+#### Using different embeddings
+
+Likewise, you can add different embeddings in the same manner to `hedwig-data/embeddings`. Just don't forget to tell the model what to use in command line args
+
